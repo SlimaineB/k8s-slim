@@ -1,10 +1,9 @@
-# k8s-slim
+# k8s-slim : A Full Kubernetes cluster in less than 9 minutes
 
 ## Description
 
-This project allow you to create a 1.22 version of kubernetes cluster in Ubuntu 21-04.
-We use VirtualBox with Ansible Provisionner and Helm Chart.
-
+This project allow you to create with one command a fully kubernetes cluster (version 1.22) running Ubuntu 21-04.
+It uses Vagrant with VirtualBox and Ansible Provisionner and Helm Chart.
 
 
 ## How to
@@ -38,10 +37,10 @@ kubectl get nodes
 Result : 
 
 ```
-NAME       STATUS   ROLES    AGE   VERSION
-master     Ready    master   12m   v1.22.1
-worker-1   Ready    <none>   14m   v1.22.1
-worker-2   Ready    <none>   15m   v1.22.1
+NAME       STATUS   ROLES                  AGE   VERSION
+master     Ready    control-plane,master   22m   v1.22.3
+worker-1   Ready    <none>                 18m   v1.22.3
+worker-2   Ready    <none>                 16m   v1.22.3
 ```
 
 ### Connect to the master via ssh
