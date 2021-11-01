@@ -50,6 +50,7 @@ Either you are at the same level as your Vagrantfile, in this case you run the f
 ```sh
 vagrant ssh master
 ```
+### Deploy and run the nodes
 
 Either you are in another folder :
 
@@ -57,3 +58,11 @@ Either you are in another folder :
 ssh -r vagrant@192.168.50.10
 password = vagrant
 ```
+### Debug Ansible script
+
+Debug Ansible script :
+
+```sh
+ansible-playbook -i .vagrant/provisioners/ansible/inventory/vagrant_ansible_inventory roles/main.yml --limit workers --tags jenkins
+```
+
