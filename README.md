@@ -1,8 +1,11 @@
-# k8s-cluster-vagrant-ansible
+# k8s-slim
 
 ## Description
 
-This project allows you to deploy a multi-node kubernetes cluster with the help of Vagrantfile and Ansible
+This project allow you to create a 1.22 version of kubernetes cluster in Ubuntu 21-04.
+We use VirtualBox with Ansible Provisionner and Helm Chart.
+
+
 
 ## How to
 

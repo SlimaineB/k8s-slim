@@ -3,7 +3,7 @@
 # ####################################################################
 IMAGE_NAME = "bento/ubuntu-21.04"   # Image to use
 WORKER_NAME="worker"                # Worker prefix node name
-WORKER_NBR = 1                      # Number of workers node  
+WORKER_NBR = 2                      # Number of workers node  
 WORKER_MEM = 4096                   # Amount of RAM
 WORKER_CPU = 3                      # Number of processors (Minimum value of 2 otherwise it will not work)
 MASTER_MEM = 2048                   # Amount of RAM
