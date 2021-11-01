@@ -19,9 +19,10 @@ vagrant up
 
 You can configure your k8s cluster by editing the `CONFIGURATION VARIABLES` available in the `Vagrantfile`
 
-### Configure your kubectl
+### Intercat with your cluster
 
-Here's how to configure the kubectl tool on your local machine to communicate with the kubernetes API :
+The kubeconfig is automatically copied from master to your local machine.
+If it is not the case, you can copy it with below command : 
 
 ```sh
 scp -r vagrant@192.168.50.10:/home/vagrant/.kube $HOME/
@@ -38,8 +39,9 @@ Result :
 
 ```
 NAME       STATUS   ROLES    AGE   VERSION
-master     Ready    master   35m   v1.15.1
-worker-1   Ready    <none>   30m   v1.15.1
+master     Ready    master   12m   v1.22.1
+worker-1   Ready    <none>   14m   v1.22.1
+worker-2   Ready    <none>   15m   v1.22.1
 ```
 
 ### Connect to the master via ssh
