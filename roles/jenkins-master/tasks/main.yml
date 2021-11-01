@@ -1,0 +1,36 @@
+---
+# tasks file for grafana
+
+- name: Copy jenkins manifest file with owner and permissions
+  copy:
+    src: "{{ item }}"
+    dest: "{{ item }}"
+    mode: '0644'
+  with_items:
+    - pv.yaml
+    - rbac.yaml
+    - jenkins-helm-values.yaml
+
+- name: "Create jenkins namespace"
+  become: false
+  shell: "kubectl get namespace jenkins || kubectl create namespace jenkins" 
+
+- name: "Install Jenkins {{ item }} "
+  become: false
+  command: "kubectl apply -f {{ item }}" 
+  with_items:
+    - pv.yaml
+    - rbac.yaml
+    
+- name: "Update Helm Repo "
+  become: false
+  command: "helm repo add jenkinsci https://charts.jenkins.io" 
+
+- name: "Update Helm Repo "
+  become: false
+  command: "helm repo update" 
+     
+- name: "Deploy Jenkins using helm if not exist "
+  become: false
+  shell : "helm get manifest  jenkins -n jenkins || helm install jenkins -n jenkins -f jenkins-helm-values.yaml jenkinsci/jenkins" 
+

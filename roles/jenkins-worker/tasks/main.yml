@@ -1,0 +1,12 @@
+---
+# tasks file for jenkins-worker
+
+- name: create /data/jenkins-volume with jenkins rights
+  become: yes
+   file:
+    owner: 1000
+    group: 1000
+    path: /data/jenkins-volume
+    state: directory
+    recurse: yes  
+

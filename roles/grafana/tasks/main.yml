@@ -1,0 +1,32 @@
+---
+# tasks file for grafana
+
+- name: Create a directory for grafana-data
+  tags: grafana
+  ansible.builtin.file:
+    path: /data/grafana-data
+    state: directory
+    mode: '0755'
+    
+- name: Create a k8s namespace
+  tags: grafana
+  kubernetes.core.k8s:
+    name: testing
+    api_version: v1
+    kind: Namespace
+    state: present
+    
+- name: Add bitnami chart repo
+  tags: grafana
+  kubernetes.core.helm_repository:
+    name: bitnami
+    repo_url: "https://charts.bitnami.com/bitnami"
+
+- name: Deploy latest version of Grafana chart inside monitoring namespace (and create it)
+  tags: grafana
+  kubernetes.core.helm:
+    kubeconfig: /home/vagrant/.kube/config
+    name: my-grafana
+    chart_ref: bitnami/grafana
+    release_namespace: monitoring
+    create_namespace: true

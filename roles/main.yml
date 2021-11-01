@@ -1,0 +1,29 @@
+- hosts: masters
+  become: yes
+  roles:
+    - { role: master} 
+     
+- hosts: workers
+  become: yes
+  roles:
+    - { role: worker} 
+
+#- hosts: masters
+#  become: yes
+#  roles:
+#    - { role: grafana}
+#  collections:
+#  - kubernetes.core
+
+
+- hosts: workers
+  tags: jenkins
+  become: yes
+  roles:
+    - { role: jenkins-worker} 
+
+- hosts: masters
+  tags: jenkins
+  become: yes
+  roles:
+    - { role: jenkins-master} 

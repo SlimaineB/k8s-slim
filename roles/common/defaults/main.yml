@@ -1,0 +1,30 @@
+gpg_keys:
+- key: https://download.docker.com/linux/ubuntu/gpg
+- key: https://packages.cloud.google.com/apt/doc/apt-key.gpg
+- key: https://baltocdn.com/helm/signing.asc
+
+repositories:
+- repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ansible_distribution_release}} stable"
+- repo: "deb https://apt.kubernetes.io/ kubernetes-xenial main" #k8s not available yet for Bionic (Ubuntu 18.04)
+- repo: "deb https://baltocdn.com/helm/stable/debian/ all main"
+
+https_packages:
+- name: apt-transport-https
+- name: curl
+
+
+docker_packages:
+- name: docker-ce
+- name: docker-ce-cli 
+- name: containerd.io
+
+
+
+k8s_packages:
+- name: kubeadm 
+- name: kubelet 
+- name: kubectl
+- name: helm
+
+
+helm_chart_url: "https://charts.bitnami.com/bitnami"
