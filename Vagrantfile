@@ -9,7 +9,7 @@ WORKER_CPU = 3                      # Number of processors (Minimum value of 2 o
 MASTER_MEM = 2048                   # Amount of RAM
 MASTER_CPU = 2                      # Number of processors (Minimum value of 2 otherwise it will not work)
 MASTER_NAME="master"                # Master node name
-NODE_NETWORK_BASE = "192.168.50"    # First three octets of the IP address that will be assign to all type of nodes
+NODE_NETWORK_BASE = "192.168.56"    # First three octets of the IP address that will be assign to all type of nodes
 POD_NETWORK = "192.168.100.0/16"    # Private network for inter-pod communication
 
 
