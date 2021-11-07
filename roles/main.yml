@@ -1,13 +1,15 @@
 - hosts: masters
   become: yes
+  tags: cluster
   roles:
-    - { role: master} 
+    - { role: node-master} 
      
 - hosts: workers
+  tags: cluster
   become: yes
   roles:
-    - { role: worker} 
-
+    - { role: node-worker} 
+    
 #- hosts: masters
 #  become: yes
 #  roles:
@@ -16,14 +18,21 @@
 #  - kubernetes.core
 
 
-- hosts: workers
-  tags: jenkins
+- hosts: masters
+  tags: monitoring
   become: yes
   roles:
-    - { role: jenkins-worker} 
+    - { role: monitoring/metrics-server} 
+
+
+- hosts: workers
+  tags: cicd
+  become: yes
+  roles:
+    - { role: cicd/jenkins-worker} 
 
 - hosts: masters
-  tags: jenkins
+  tags: cicd
   become: yes
   roles:
-    - { role: jenkins-master} 
+    - { role: cicd/jenkins-master} 

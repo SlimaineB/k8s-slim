@@ -1,0 +1,12 @@
+- name: Copy metric-server manifest file with owner and permissions
+  tags: metric
+  copy:
+    src: metric-server.yaml
+    dest: metric-server.yaml
+    mode: '0644'
+  
+- name: Install metrics server
+  tags: metric
+  become: false
+  command: kubectl apply -f metric-server.yaml  
+ 
