@@ -3,7 +3,7 @@
 ## Description
 
 This project allow you to create with one command a fully kubernetes cluster (version 1.22) running Ubuntu 21-04.
-It uses Vagrant with VirtualBox and Ansible Provisionner and Helm Chart.
+It uses Vagrant with VirtualBox, Ansible Provisionner and Helm Chart.
 
 
 ## How to

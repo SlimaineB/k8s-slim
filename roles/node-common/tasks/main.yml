@@ -19,7 +19,13 @@
     state=present
   with_items: "{{ repositories | default([]) }}"
 
-
+- name: Install nfs_client_packages
+  apt: 
+    name="{{ item.name }}"
+    state=present
+    update_cache=yes
+  with_items: "{{ nfs_client_packages | default([]) }}"
+  
 - name: Install docker
   apt: 
     name="{{ item.name }}"

@@ -2,13 +2,13 @@
   become: yes
   tags: cluster
   roles:
-    - { role: node-master} 
+    - node-master
      
 - hosts: workers
   tags: cluster
   become: yes
   roles:
-    - { role: node-worker} 
+    - node-worker 
     
 #- hosts: masters
 #  become: yes
@@ -22,17 +22,42 @@
   tags: monitoring
   become: yes
   roles:
-    - { role: monitoring/metrics-server} 
+    - monitoring/metrics-server
 
 
 - hosts: workers
   tags: cicd
   become: yes
   roles:
-    - { role: cicd/jenkins-worker} 
+    - cicd/jenkins-worker 
 
 - hosts: masters
   tags: cicd
   become: yes
   roles:
-    - { role: cicd/jenkins-master} 
+    - cicd/jenkins-master
+    
+- hosts: nfs-server
+  become: yes
+  tags: nfs-server
+  roles:
+    - nfs-server 
+  vars:
+    nfs_server_exports:
+    - export:
+      access:
+        - hostname: '*'
+          options:
+            - 'rw'
+            - 'sync'
+            - 'no_subtree_check'
+            - 'no_root_squash'
+      mode: "u=rwx,g=rwx,o=rwx"
+      path: '/data/'
+      
+- hosts: masters
+  tags: nfs-server
+  become: yes
+  roles:
+    - nfs-provisionner  
+     

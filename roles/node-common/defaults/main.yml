@@ -18,7 +18,8 @@ docker_packages:
 - name: docker-ce-cli 
 - name: containerd.io
 
-
+nfs_client_packages:
+- name: nfs-common
 
 k8s_packages:
 - name: kubeadm 
