@@ -1,0 +1,34 @@
+# ####################################################################
+# ################### CONFIGURATION VARIABLES ########################
+# ####################################################################
+IMAGE_NAME = "bento/ubuntu-21.04"   	# Image to use
+NAME="nested-vm"                	# Worker prefix node name 
+MEM = 2048                   		# Amount of RAM
+CPU = 2                   		# Number of CPUs 
+IP = "192.169.56.10"           	# IP of Nested VM : Should be in another subnet
+
+
+# ################### NFS CREATION ########################
+# ############################################################
+Vagrant.configure("2") do |config|
+    config.ssh.insert_key = false
+
+    # RAM and CPU config
+    config.vm.provider "virtualbox" do |v|
+        v.memory = MEM
+        v.cpus = CPU
+    end
+
+    # Master node config
+    config.vm.define NAME do |nestedvm|
+        
+        # Hostname and network config
+        nestedvm.vm.box = IMAGE_NAME
+        nestedvm.vm.network "private_network", ip: "#{IP}"
+        nestedvm.vm.hostname = NAME
+
+      
+    end
+end
+
+
